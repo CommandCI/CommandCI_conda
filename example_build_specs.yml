@@ -1,0 +1,31 @@
+# Example build_spec.yml files
+# This example builds the toolz package for Python 2.7 and 3.5 on all 
+# five supported platforms
+
+# The conda build commands that will be run can be examined by running
+# python create_build_script.py example_build_specs.yml linux-32
+
+# The path to the recipe directory
+recipe_dir: conda-recipes/python/toolz 
+
+# Python version(s) the package should be built against
+# This can be left blank if the package does not depend on Python
+python:
+    - 2.7
+    - 3.5
+
+# NumPy version the package should be bult against 
+# The example does not depend on numpy so this it not used in this package
+# numpy:
+#   - "1.9"
+#   - "1.10"
+
+# Platforms the package should be built on
+platform:
+ - linux-32
+ - linux-64
+ - osx-64
+ - win-32
+ - win-64
+
+# Additional builds can be specified by adding more specs seperated by ---
