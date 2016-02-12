@@ -1,4 +1,4 @@
-recipe_dir: conda-recipes/python/six
+recipe_dir: conda-recipes/python/cytoolz
 python:
     - 2.6
     - 2.7
@@ -6,7 +6,6 @@ python:
     - 3.4
     - 3.5
 platform:
-    - linux-32
     - linux-64
     - osx-64
     - win-32
