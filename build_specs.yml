@@ -6,7 +6,6 @@ python:
     - 3.4
     - 3.5
 platform:
-    - linux-32
     - linux-64
     - osx-64
     - win-32
