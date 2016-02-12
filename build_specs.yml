@@ -1,0 +1,13 @@
+recipe_dir: conda-recipes/python/toolz 
+python:
+    - 2.6
+    - 2.7
+    - 3.3
+    - 3.4
+    - 3.5
+platform:
+    - linux-32
+    - linux-64
+    - osx-64
+    - win-32
+    - win-64
