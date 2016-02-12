@@ -1,0 +1,41 @@
+language:
+    - objective-c
+
+env:
+    global:
+        # Encrypted token for uploading conda packages to Anaconda.org
+        # First create a token using:
+        # anaconda auth --create --name CommandCI --scopes 'repos conda'
+        # Then encrypt:
+        # travis encrypt TOKEN=xx-tokenfrom-above
+        # This must be done from the CommandCI/CommandCI_conda repository
+        - secure: "ATmsKd3Qd77R0i9xyr6gJB/5rw6bodPwYs/iR4W8ZlOd3v0F7RtD6sb5/bhWUjS0F5CtL9ygAqabzPpt0ZSF1YJiWWPiR6yp9LJZAj8dueFDDusAGDuzfOgDhJDIZ+JoIkSTG5s9qwpTh4L9la+NV4mBj2w85Km+mgKiQJu8YfiUJHVTXjMt43DLga2gtHtna8HlvR3ba638YbwUOZjik694VFRIKmB4wu+BTIUcql9O8ZsYoURH5PjUsB8auDXDGZJZKqfpRVX14dC0EpXWPLOuOOjcmI+tdBzgdh1J7k+lC8KQnK+AaNO3aWgnerQwsGZKOyL/1YL+yeMeaWcrA3tKHNByBu9i5e54B+zDHwpAE4ejR2/TEJc7hYC2PRptyL60FsmG+s5VYbA4SS5nzCRj/DLr6flXipyvxxyci2Xl8nt47sSGmzF/RSbmN7U0ANmhKR9cbK2ZO3aWB/MPfn8rlTuO/j/JlHZ0DlW3xRNSTu+Rqv+bGcMWo7TicHi9AWmbZXfvY8D06H3yf4TzgOsDFk2dBq7xDZVSHUAyrnhzlyKDCHLskrCJcO58s7MaPVPJ/a63stWNHaXnAmxLaPn0HUTVVGPjODokbCqzHHVBy/TMZiGD/3hSV3Dz9at/bEk6wCPZQoRPY3Zo8Yfv/RcNfoLvMLGzHgQuZQKeaSg="
+
+install: 
+    - MINICONDA_URL="https://repo.continuum.io/miniconda"
+    - MINICONDA_FILE="Miniconda3-latest-MacOSX-x86_64.sh"
+    - wget "${MINICONDA_URL}/${MINICONDA_FILE}"
+    - bash $MINICONDA_FILE -b
+    - export PATH=/Users/travis/miniconda3/bin:$PATH
+    - conda update --yes conda
+    - conda install --yes conda-build jinja2 anaconda-client
+    - mkdir ~/conda-bld
+    - export CONDA_BLD_PATH=~/conda-bld
+
+script:
+    - | 
+      if [ ! -f build_script_osx-64.sh ]; then
+        echo "Creating build script from YAML file"
+        python create_build_script.py build_specs.yml osx-64 > build_script_osx-64.sh
+        chmod +x build_script_osx-64.sh
+      fi
+    - ./build_script_osx-64.sh
+
+after_success:
+    # List files created
+    - cd ~/conda-bld
+    - ls */*.tar.bz2
+    # Upload to Anaconda.org
+    - if [[ "${TRAVIS_PULL_REQUEST}" == "false" && "${TRAVIS_BRANCH}" == "master" ]]; then
+          ls */*.tar.bz2 >/dev/null 2>&1 && anaconda -t $TOKEN upload */*.tar.bz2;
+      fi
