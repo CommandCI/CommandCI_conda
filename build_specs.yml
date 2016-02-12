@@ -1,4 +1,4 @@
-recipe_dir: conda-recipes/python/toolz 
+recipe_dir: conda-recipes/python/six
 python:
     - 2.6
     - 2.7
