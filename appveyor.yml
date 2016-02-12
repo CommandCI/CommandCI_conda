@@ -9,7 +9,7 @@ environment:
   # anaconda auth --create --name jjhelmusHearthAppVeyor
   # and then encrypt at https://ci.appveyor.com/tools/encrypt
   TOKEN:
-    secure: mfEwbqVNxDLLk0m7X1nXc8tEIsIgxliFIu/9xW/r5wzYG3jm/8kGWaDojaUfOc3q
+    secure: zZ2KJBd5e5SDnHoAss2YSAorqI+01FWBaZBQfLxcV/OkHdTTiD2Q2C06JxwaK7Q5
 
   matrix:
     - PYTHON_ARCH: "64"

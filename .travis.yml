@@ -9,7 +9,7 @@ env:
         # Then encrypt:
         # travis encrypt TOKEN=xx-tokenfrom-above
         # This must be done from the CommandCI/CommandCI_conda repository
-        - secure: "ATmsKd3Qd77R0i9xyr6gJB/5rw6bodPwYs/iR4W8ZlOd3v0F7RtD6sb5/bhWUjS0F5CtL9ygAqabzPpt0ZSF1YJiWWPiR6yp9LJZAj8dueFDDusAGDuzfOgDhJDIZ+JoIkSTG5s9qwpTh4L9la+NV4mBj2w85Km+mgKiQJu8YfiUJHVTXjMt43DLga2gtHtna8HlvR3ba638YbwUOZjik694VFRIKmB4wu+BTIUcql9O8ZsYoURH5PjUsB8auDXDGZJZKqfpRVX14dC0EpXWPLOuOOjcmI+tdBzgdh1J7k+lC8KQnK+AaNO3aWgnerQwsGZKOyL/1YL+yeMeaWcrA3tKHNByBu9i5e54B+zDHwpAE4ejR2/TEJc7hYC2PRptyL60FsmG+s5VYbA4SS5nzCRj/DLr6flXipyvxxyci2Xl8nt47sSGmzF/RSbmN7U0ANmhKR9cbK2ZO3aWB/MPfn8rlTuO/j/JlHZ0DlW3xRNSTu+Rqv+bGcMWo7TicHi9AWmbZXfvY8D06H3yf4TzgOsDFk2dBq7xDZVSHUAyrnhzlyKDCHLskrCJcO58s7MaPVPJ/a63stWNHaXnAmxLaPn0HUTVVGPjODokbCqzHHVBy/TMZiGD/3hSV3Dz9at/bEk6wCPZQoRPY3Zo8Yfv/RcNfoLvMLGzHgQuZQKeaSg="
+        - secure: "KJmyVmJvUy1Fnyzk09f/q69gLmo+y/PqcyrQv+wZFBQvC4ZVLhNMZxE8VNxa96MjQHD3x3cTll5qBC6JVIL2+d3YJ/0p3MfUnZbsu/KFqLlV3LFNqohXrlJSGQYluidSz4WgfAoRrFNxoTgZ9bYrVwhMwo/2mbXz5EyeZITWSoOtRCZJi+6wjVP9Bb5kCEQaRqI3w3+DG2QYwqKKAjUERHpFftKeHOZS+7jLX6Krh6uQumR9yirmiSPbs5mChOxyXQyS+aQmc3oFKrMzPfB+fo0lc8mL5VLVEH5WFtQlyXDWxJvgFRbjFjqlpesHjudg+XBjPREs6Wsu4Q3nECZs2FeMRjO9Y7pg4dtGbxNedFfm6o5kKTClrRZ+geJAsd4ynv95Xu62TM6clS0jbVrl/D6BSAYr3PPUr6aGoMNUgqMhqjs52HtQDPbqqIbbNAJ6jImMclgU/pH63E1/4fa8UCcM1IKALX1j1vViGb3T3/bEfR2C1khVIz7FC1Csh400N46xzBqzxTof046rh3rFuXyk7ur9K82uLcgWI6lKEQPK5k6+9QLRIiLirkHFYW2Bu79ajGjPTpkyoUEAUEtv9DeRh9B0jEM069g9TSKgDfjhx2/TvX4ecMW7flTMcXtYakakeDwumANs3wwkjOtyxGtw8XfWhGi4766AeUUSRcU="
 
 install: 
     - MINICONDA_URL="https://repo.continuum.io/miniconda"
