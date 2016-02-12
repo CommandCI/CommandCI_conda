@@ -5,11 +5,11 @@ env:
     global:
         # Encrypted token for uploading conda packages to Anaconda.org
         # First create a token using:
-        # anaconda auth --create --name CommandCI --scopes 'repos conda'
+        # anaconda auth --create -o CommandCU --name CommandCI --scopes 'repos conda'
         # Then encrypt:
         # travis encrypt TOKEN=xx-tokenfrom-above
         # This must be done from the CommandCI/CommandCI_conda repository
-        - secure: "KJmyVmJvUy1Fnyzk09f/q69gLmo+y/PqcyrQv+wZFBQvC4ZVLhNMZxE8VNxa96MjQHD3x3cTll5qBC6JVIL2+d3YJ/0p3MfUnZbsu/KFqLlV3LFNqohXrlJSGQYluidSz4WgfAoRrFNxoTgZ9bYrVwhMwo/2mbXz5EyeZITWSoOtRCZJi+6wjVP9Bb5kCEQaRqI3w3+DG2QYwqKKAjUERHpFftKeHOZS+7jLX6Krh6uQumR9yirmiSPbs5mChOxyXQyS+aQmc3oFKrMzPfB+fo0lc8mL5VLVEH5WFtQlyXDWxJvgFRbjFjqlpesHjudg+XBjPREs6Wsu4Q3nECZs2FeMRjO9Y7pg4dtGbxNedFfm6o5kKTClrRZ+geJAsd4ynv95Xu62TM6clS0jbVrl/D6BSAYr3PPUr6aGoMNUgqMhqjs52HtQDPbqqIbbNAJ6jImMclgU/pH63E1/4fa8UCcM1IKALX1j1vViGb3T3/bEfR2C1khVIz7FC1Csh400N46xzBqzxTof046rh3rFuXyk7ur9K82uLcgWI6lKEQPK5k6+9QLRIiLirkHFYW2Bu79ajGjPTpkyoUEAUEtv9DeRh9B0jEM069g9TSKgDfjhx2/TvX4ecMW7flTMcXtYakakeDwumANs3wwkjOtyxGtw8XfWhGi4766AeUUSRcU="
+        secure: "GSG18XVsHdPP53A1HxCAQUg3uf/M5hpbi2Em3hCQSQO7ZI8myHuMj7kGuKfA6M4dpu0jYrCcA5glTbOR3yLRB1feuh2fIX6g1sUa839r+Q7UDLeSY7dag5IT/CAHYAttRoarpb6bafsC73hIYOjU1VPP5aVxY5Nak3BQkSMBlGFi8b0tM1QeAzxdir2ZH2Pb3/t0d8iXNTR38aamRCfMzk8QatpAt5CmxcWAjXfkXxUgNqjJJZm5zMHGCjnlWTYzNeeMvtlAglOTI9zrmGjADL/SKnoYhFyLNRhm6tj49/E5cbNiM/uzPCMABKGHTvD2K7Ev/cTIxG0IH6wL1I6tofR/M4KpMJTr2Q8H1ufSmpB48XfDb70i9edLdtEvPhsXQWp6gB2/osStHWbprGdvsoWepBpwslIEg3KkvJhF8pqSigAof6iYSynwa3KjjnCuHvfiUHrIWMaj9gSrM2pUhthSU7Wv7o9U9Nu4P1JwmRaA9SM4LCmwXNq4B7BVsHxzK7MfLD3P6IDaR5MpjIy+2wVZdcpzwsW5Or8NDgywLRZp6mhnmUCUv+xciX8Y1PayBzpdAgINjmJ5fbENGeZmiglvw8jIvda4Qxe8SjK5aJSkJJocSvAmkT7EcW4ldSR9weo6GeF7JUb2bnfZN9k9eDU3vUMgckzLjxjwb8K8N7g="
 
 install: 
     - MINICONDA_URL="https://repo.continuum.io/miniconda"

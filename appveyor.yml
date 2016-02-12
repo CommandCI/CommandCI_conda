@@ -6,10 +6,10 @@ environment:
 
   # Token for uploading packages to Anaconda.org
   # Create using
-  # anaconda auth --create --name jjhelmusHearthAppVeyor
+  # anaconda auth --create -o CommandCI --name token_name 
   # and then encrypt at https://ci.appveyor.com/tools/encrypt
   TOKEN:
-    secure: zZ2KJBd5e5SDnHoAss2YSAorqI+01FWBaZBQfLxcV/OkHdTTiD2Q2C06JxwaK7Q5
+    secure: /WD7xlC5xL8HISl/H9czjEv5mkMdZXQ0n+jTXH/Zui5Ij+5Ofv/rAby8kH9hnHzF
 
   matrix:
     - PYTHON_ARCH: "64"
