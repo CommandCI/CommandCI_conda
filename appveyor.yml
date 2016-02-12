@@ -1,0 +1,59 @@
+environment:
+  # SDK v7.0 MSVC Express 2008's SetEnv.cmd script will fail if the
+  # /E:ON and /V:ON options are not enabled in the batch script interpreter
+  # See: http://stackoverflow.com/a/13751649/163740
+  CMD_IN_ENV: "%COMSPEC% /E:ON /V:ON /C .\\.ci_support\\run_with_env.cmd"
+
+  # Token for uploading packages to Anaconda.org
+  # Create using
+  # anaconda auth --create --name jjhelmusHearthAppVeyor
+  # and then encrypt at https://ci.appveyor.com/tools/encrypt
+  TOKEN:
+    secure: mfEwbqVNxDLLk0m7X1nXc8tEIsIgxliFIu/9xW/r5wzYG3jm/8kGWaDojaUfOc3q
+
+  matrix:
+    - PYTHON_ARCH: "64"
+    - PYTHON_ARCH: "32"
+
+# We always use a 64-bit machine, but can build x86 distributions
+# with the PYTHON_ARCH variable (which is used by CMD_IN_ENV).
+platform:
+    - x64
+
+install:
+  - cmd: git submodule update --init --recursive
+    # Use the pre-installed Miniconda for the desired arch
+  - ps: if($env:PYTHON_ARCH -eq '32') 
+          {$root = "C:\Miniconda"}
+        else 
+          {$root = "C:\Miniconda-x64"}
+        $env:path="$root;$root\Scripts;$root\Library\bin;$($env:path)"
+  - cmd: conda update -yq conda
+  - cmd: conda install -yq conda-build jinja2 anaconda-client
+  # See https://github.com/omnia-md/conda-recipes/blob/master/appveyor.yml
+  - "del C:\\cygwin\\bin\\git.exe"
+
+build: false
+
+test_script:
+    # Run the build script, creating the file if needed
+    - cmd: IF NOT EXIST build_script_win-%PYTHON_ARCH%.bat (
+               python create_build_script.py build_specs.yml win-%PYTHON_ARCH% > build_script_win-%PYTHON_ARCH%.bat
+           )
+    - cmd: ".\\build_script_win-%PYTHON_ARCH%.bat"
+
+    # copy any newly created conda packages into the conda_packages dir
+    - cmd: mkdir conda_packages
+    - cmd: 'copy /Y C:\Miniconda\conda-bld\win-32\*tar.bz2 conda_packages || cmd /c "exit /b 0"'
+    - cmd: 'copy /Y C:\Miniconda-x64\conda-bld\win-64\*tar.bz2 conda_packages || cmd /c "exit /b 0"'
+    - cmd: dir conda_packages
+
+    # upload conda packages to Anaconda.org
+    - cmd: cd conda_packages
+    - cmd: if [%APPVEYOR_PULL_REQUEST_NUMBER%]==[] (
+             if %APPVEYOR_REPO_BRANCH%==master (
+               if exist *tar.bz2 (
+                 anaconda -t %TOKEN% upload --no-progress *.tar.bz2
+               )
+             )
+           )
