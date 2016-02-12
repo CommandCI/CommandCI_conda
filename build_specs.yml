@@ -1,4 +1,4 @@
-recipe_dir: conda-recipes/python/six
+recipe_dir: conda-recipes/python/cytoolz
 python:
     - 2.6
     - 2.7
