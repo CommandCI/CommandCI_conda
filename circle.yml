@@ -1,0 +1,22 @@
+machine:
+  services:
+    - docker
+
+dependencies:
+  # Note, we used to use the naive caching of docker images, but found that it was quicker
+  # just to pull each time. #rollondockercaching
+  override:
+    - docker pull phusion/holy-build-box-64:latest
+    - docker pull phusion/holy-build-box-32:latest
+checkout:
+  post:
+    - git submodule init 
+    - git submodule update
+test:
+  override:
+    - docker run -e TOKEN -e CIRCLE_PR_NUMBER -e CIRCLE_BRANCH 
+         -i -v `pwd`:/io phusion/holy-build-box-64:latest
+         bash /io/.ci_support/docker-build-64.sh;
+    - docker run -e TOKEN -e CIRCLE_PR_NUMBER -e CIRCLE_BRANCH 
+       -i -v `pwd`:/io phusion/holy-build-box-32:latest linux32 
+       bash /io/.ci_support/docker-build-32.sh;
