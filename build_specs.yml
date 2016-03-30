@@ -1,12 +1,6 @@
-recipe_dir: conda-recipes/python/cytoolz
+recipe_dir: feather-format 
 python:
-    - 2.6
-    - 2.7
-    - 3.3
-    - 3.4
     - 3.5
 platform:
-    - linux-64
-    - osx-64
     - win-32
     - win-64
